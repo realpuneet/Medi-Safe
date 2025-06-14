@@ -16,16 +16,15 @@ const Home = () => {
     setUserId(id);
     await saveUserToFirestore(id, data);
     reset();
-    toast.success("Medical ID saved successfully!");
+    toast.success("✅ Medical ID saved successfully!");
     console.log("User data saved:", { id, ...data });
-  
   };
 
   const handleDelete = async () => {
     if (!userId) return;
     await deleteUserFromFirestore(userId);
     setUserId("");
-    toast.success("Medical ID deleted successfully!");
+    toast.success("🗑️ Medical ID deleted successfully!");
     console.log("User data deleted:", userId);
   };
 
@@ -44,30 +43,33 @@ const Home = () => {
   };
 
   return (
-    <div className="p-4 max-w-xl mx-auto space-y-4 shadow-2xl mt-5 bg-white rounded-lg">
-      <h1 className="text-2xl font-bold text-center">MediSafe - Create Medical ID</h1>
-      <form className="space-y-3" onSubmit={handleSubmit(onSubmit)}>
+    <div className="p-6 md:p-10 max-w-2xl mx-auto mt-8 bg-gradient-to-br from-white to-blue-50 rounded-2xl shadow-xl border border-blue-200">
+      <h1 className="text-3xl font-bold text-center text-blue-700 mb-6">🩺 Create Medical ID</h1>
+
+      <form className="space-y-5" onSubmit={handleSubmit(onSubmit)}>
         <FormInput label="Name" name="name" register={register} required />
         <FormInput label="Age" name="age" register={register} required />
         <FormInput label="Blood Group" name="blood" register={register} required />
         <FormInput label="Allergies" name="allergies" register={register} required />
-        <FormInput label="Conditions" name="conditions" register={register} required />
+        <FormInput label="Medical Conditions" name="conditions" register={register} required />
         <FormInput label="Emergency Contact (Phone)" name="contact" register={register} required />
 
         <button
-          className={`bg-green-600 text-white px-4 py-2 rounded-3xl ${!isValid ? "opacity-50 cursor-not-allowed" : ""}`}
           type="submit"
           disabled={!isValid}
+          className={`w-full bg-green-600 text-white py-3 rounded-xl font-semibold transition duration-300 hover:bg-green-700 shadow-md ${
+            !isValid ? "opacity-50 cursor-not-allowed" : ""
+          }`}
         >
-          Save & Generate QR
+          ✅ Save & Generate QR
         </button>
       </form>
 
       {userId && (
-        <>
+        <div className="mt-6 space-y-4">
           <QRDisplay userId={userId} />
           <ActionButtons onDownload={downloadQR} onDelete={handleDelete} />
-        </>
+        </div>
       )}
     </div>
   );
