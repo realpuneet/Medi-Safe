@@ -17,9 +17,8 @@ const Home = () => {
     await saveUserToFirestore(id, data);
     reset();
     toast.success("Medical ID saved successfully!");
-    // Generate QR code here or in QRDisplay component
     console.log("User data saved:", { id, ...data });
-    
+  
   };
 
   const handleDelete = async () => {
