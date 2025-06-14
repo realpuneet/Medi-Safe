@@ -3,9 +3,9 @@ import { useForm } from "react-hook-form";
 import { v4 as uuidv4 } from "uuid";
 import { saveUserToFirestore, deleteUserFromFirestore } from "../firebase/firestoreUtils";
 import FormInput from "../components/FormInput";
-import QRDisplay from "../components/QRDisplay";
 import ActionButtons from "../components/ActionButtons";
 import { toast } from "react-toastify";
+import QRDisplay from "../components/QRdisplay";
 
 const Home = () => {
   const { register, handleSubmit, reset, formState: { isValid } } = useForm({ mode: "onChange" });
