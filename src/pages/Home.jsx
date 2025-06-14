@@ -43,35 +43,45 @@ const Home = () => {
   };
 
   return (
-    <div className="p-6 md:p-10 max-w-2xl mx-auto mt-8 bg-gradient-to-br from-white to-blue-50 rounded-2xl shadow-xl border border-blue-200">
-      <h1 className="text-3xl font-bold text-center text-blue-700 mb-6">🩺 Create Medical ID</h1>
+    <div className="mx-3">
+  <div className="px-4 sm:px-6 md:px-10 py-6 sm:py-8 max-w-xl sm:max-w-2xl mx-auto mt-8 bg-gradient-to-br from-white via-blue-50 to-blue-100 rounded-3xl shadow-2xl border border-blue-200">
+    <h1 className="text-2xl sm:text-3xl font-bold text-center text-blue-700 mb-6 drop-shadow-md">
+      🩺 Create Medical ID
+    </h1>
 
-      <form className="space-y-5" onSubmit={handleSubmit(onSubmit)}>
-        <FormInput label="Name" name="name" register={register} required />
-        <FormInput label="Age" name="age" register={register} required />
-        <FormInput label="Blood Group" name="blood" register={register} required />
-        <FormInput label="Allergies" name="allergies" register={register} required />
-        <FormInput label="Medical Conditions" name="conditions" register={register} required />
-        <FormInput label="Emergency Contact (Phone)" name="contact" register={register} required />
+    <form className="space-y-5" onSubmit={handleSubmit(onSubmit)}>
+      <FormInput label="Name" name="name" register={register} required />
+      <FormInput label="Age" name="age" register={register} required />
+      <FormInput label="Blood Group" name="blood" register={register} required />
+      <FormInput label="Allergies" name="allergies" register={register} required />
+      <FormInput label="Medical Conditions" name="conditions" register={register} required />
+      <FormInput
+        label="Emergency Contact (Phone)"
+        name="contact"
+        register={register}
+        required
+      />
 
-        <button
-          type="submit"
-          disabled={!isValid}
-          className={`w-full bg-green-600 text-white py-3 rounded-xl font-semibold transition duration-300 hover:bg-green-700 shadow-md ${
-            !isValid ? "opacity-50 cursor-not-allowed" : ""
-          }`}
-        >
-          ✅ Save & Generate QR
-        </button>
-      </form>
+      <button
+        type="submit"
+        disabled={!isValid}
+        className={`w-full bg-green-600 text-white py-3 rounded-xl font-semibold transition duration-300 hover:bg-green-700 hover:scale-[1.01] shadow-lg ${
+          !isValid ? "opacity-50 cursor-not-allowed" : ""
+        }`}
+      >
+        ✅ Save & Generate QR
+      </button>
+    </form>
 
-      {userId && (
-        <div className="mt-6 space-y-4">
-          <QRDisplay userId={userId} />
-          <ActionButtons onDownload={downloadQR} onDelete={handleDelete} />
-        </div>
-      )}
-    </div>
+    {userId && (
+      <div className="mt-6 space-y-4">
+        <QRDisplay userId={userId} />
+        <ActionButtons onDownload={downloadQR} onDelete={handleDelete} />
+      </div>
+    )}
+  </div>
+</div>
+
   );
 };
 
